@@ -39,10 +39,32 @@
 		<jsf-version>2.1.7</jsf-version>
 	</properties>
 
+<repositories>
+    <repository>
+        <id>jsfcharts-repo</id>
+        <name>Jsfcharts Maven Repository</name>
+        <url>http://yanlanglois.github.io/jsfcharts/repository</url>
+        <layout>default</layout>
+    </repository>
+</repositories>
+ 
+
+
 	<dependencyManagement>
 		<dependencies>
 			<!-- CurrencyFair Modules -->
 
+    <dependency>
+        <groupId>org.eiw</groupId>
+        <artifactId>jsfcharts-core</artifactId>
+        <version>0.0.1</version>
+    </dependency>
+    <dependency>
+        <groupId>org.eiw</groupId>
+        <artifactId>jsfcharts-jslib</artifactId>
+        <version>0.0.1</version>
+    </dependency>
+    
 			<dependency>
 				<groupId>com.as.currencyFair</groupId>
 				<artifactId>currencyFair-model</artifactId>

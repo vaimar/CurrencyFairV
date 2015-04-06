@@ -49,8 +49,6 @@ public class TradeMessageDaoImpl implements TradeMessageDao {
 		Date date ; 
 		formatter = new SimpleDateFormat("dd-MMM-yy hh:mm:ss", Locale.ENGLISH);
 		
-		
-		System.out.println(formatter.format(new Date()));
 		try {
 			tradeMessage.setTimePlaced(formatter.parse(tradeMessageDto.getTimePlaced()));
 		} catch (ParseException e) {
@@ -59,13 +57,13 @@ public class TradeMessageDaoImpl implements TradeMessageDao {
 		}
 		tradeMessage.setOriginatingCountry(tradeMessageDto.getOriginatingCountry());
 		entityManager.persist(tradeMessage);
+		entityManager.flush();
 	}
 
 	@Override
 	public List<TradeMessage> selectAll() {
 		Query query = entityManager.createQuery(SELECT_QUERY);
-		List<TradeMessage> tradeMessages = (List<TradeMessage>) query
-				.getResultList();
+		List<TradeMessage> tradeMessages = (List<TradeMessage>) query.getResultList();
 		return tradeMessages;
 	}
 }

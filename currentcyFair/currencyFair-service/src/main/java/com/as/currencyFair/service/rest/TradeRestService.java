@@ -47,9 +47,9 @@ public class TradeRestService {
 	        JSONObject jObject  = new JSONObject(crunchifyBuilder.toString());
 	        Long userId = (Long.valueOf((String) jObject.get("userId")));
 	        String currencyFrom = (String) jObject.get("currencyFrom");
-	      Double amountSell = null ;//= Double.valueOf((String)jObject.get("amountSell"));
-	        Double amountBuy = null ; //=Double.valueOf((String)jObject.get("amountBuy"));
-	        Double rate = null ;//=Double.valueOf((String)jObject.get("rate"));
+	        Double amountSell = getDesiredInstance(jObject.get("amountSell"));
+	        Double amountBuy = getDesiredInstance(jObject.get("amountBuy"));
+	        Double rate =getDesiredInstance(jObject.get("rate"));
 	        String timePlaced = (String) jObject.get("timePlaced");
 	        String originatingCountry = (String) jObject.get("originatingCountry");
 	       
@@ -60,10 +60,22 @@ public class TradeRestService {
 	        return Response.status(200).entity(crunchifyBuilder.toString()).build();
 
 	  }
-	 //"userId": "134256", "currencyFrom": "EUR", "currencyTo": "GBP", "amountSell": 1000, "amountBuy": 747.10, "rate": 0.7471, "timePlaced" : "24-JAN-15 10:27:44", "originatingCountry" : "FR"}
-		//{"userId": "134256", "currencyFrom": "EUR", "currencyTo": "GBP", "amountSell": 1000, "amountBuy": 747.10, "rate": 0.7471, "timePlaced" : "24-JAN-15 10:27:44", "originatingCountry" : "FR"}
 	
 	 
+	  Double getDesiredInstance(Object obj)
+	  {
+		  if(obj !=null)
+		  {
+		   if (obj instanceof Integer) {
+                           return  Double.valueOf(((Integer)obj).toString());
+                           
+                    }
+		   else if (obj instanceof Double) {
+                            return (Double) obj;
+		   }
+		 }
+		return null;
+	  }
 	
  
 }

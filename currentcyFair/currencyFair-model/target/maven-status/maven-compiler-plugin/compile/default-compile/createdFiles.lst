@@ -1,0 +1,4 @@
+com/as/currencyFair/model/dto/TradeMessageDto.class
+com/as/currencyFair/model/entity/TradeMessage.class
+com/as/currencyFair/model/dao/TradeMessageDao.class
+com/as/currencyFair/model/dao/impl/TradeMessageDaoImpl.class

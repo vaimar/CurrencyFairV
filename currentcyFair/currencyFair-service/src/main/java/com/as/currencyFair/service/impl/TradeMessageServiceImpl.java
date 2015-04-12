@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.as.currencyFair.model.dao.TradeMessageDao;
 import com.as.currencyFair.model.dto.TradeMessageDto;
 import com.as.currencyFair.model.entity.TradeMessage;
 import com.as.currencyFair.service.TradeMessageService;
 
+@Transactional
 @Service("tradeMessageService")
 public class TradeMessageServiceImpl implements TradeMessageService{
 

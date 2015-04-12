@@ -7,17 +7,49 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       >
     <h:body>
-    	
+    	<script type="text/javascript">
+    	// Creates canvas 320 × 200 at 10, 50
+    	var paper = Raphael(10, 50, 320, 200);
+
+    	// Creates circle at x = 50, y = 40, with radius 10
+    	var circle = paper.circle(50, 40, 10);
+    	// Sets the fill attribute of the circle to red (#f00)
+    	circle.attr("fill", "#f00");
+
+    	// Sets the stroke attribute of the circle to white
+    	circle.attr("stroke", "#fff");
+    	</script>
     	<ui:composition template="template/common/commonLayout.xhtml">
 			
 			<ui:define name="content">
     			<h2>currency Fair</h2>
-    		</ui:define>
-    	
-  #{tradeMessageBean.printMsgFromSpring()}
+    			<div id="line-example"></div>
+    				
+                <div class="row">
+                    <div class="col-md-9 col-sm-12 col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Bar Chart Example
+                            </div>
+                            <div class="panel-body">
+                                <div id="morris-bar-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Donut Chart Example
+                            </div>
+                            <div class="panel-body">
+                                <div id="morris-donut-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+</div>
   
   		 <h:dataTable value="#{tradeMessageBean.getList()}" var="o"
-    			styleClass="order-table"
+    			styleClass="table table-striped"
     			headerClass="order-table-header"
     			rowClasses="order-table-odd-row,order-table-even-row"
     		>
@@ -33,10 +65,21 @@
  
     		</h:dataTable>
  
+ 	
+ 
+    		</ui:define>
+    	
+
 
     	
     		<ui:define name="footer">
     	
+    			<h:outputScript library="webjars" name="chartjs/1.0.2/Chart.js" />
+		<h:outputScript library="webjars" name="jquery/1.11.1/jquery.js" />
+		<h:outputScript library="webjars" name="morrisjs/0.5.1/morris.js" />
+		<h:outputScript library="webjars" name="raphaeljs/2.1.2/raphael-min.js" />
+		
+		
     		</ui:define>
 			
     	</ui:composition>

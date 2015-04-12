@@ -16,9 +16,12 @@ import com.as.currencyFair.service.TradeMessageService;
 @ManagedBean(name="tradeMessageBean")
 @ViewScoped
 public class TradeMessageBean {
-
+	
 	@Autowired
 	TradeMessageService tradeMessageService;
+	
+	private String selectedCurrency;
+	
 	
 	
 	public List<TradeMessage> getList()
@@ -29,5 +32,13 @@ public class TradeMessageBean {
 	
 	public String printMsgFromSpring() {
 		return "test";
+	}
+
+	public String getSelectedCurrency() {
+		return selectedCurrency;
+	}
+
+	public void setSelectedCurrency(String selectedCurrency) {
+		this.selectedCurrency = selectedCurrency;
 	}
 }

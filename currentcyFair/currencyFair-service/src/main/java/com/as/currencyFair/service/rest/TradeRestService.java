@@ -47,13 +47,14 @@ public class TradeRestService {
 	        JSONObject jObject  = new JSONObject(crunchifyBuilder.toString());
 	        Long userId = (Long.valueOf((String) jObject.get("userId")));
 	        String currencyFrom = (String) jObject.get("currencyFrom");
+	        String currencyTo = (String) jObject.get("currencyTo"); 
 	        Double amountSell = getDesiredInstance(jObject.get("amountSell"));
 	        Double amountBuy = getDesiredInstance(jObject.get("amountBuy"));
 	        Double rate =getDesiredInstance(jObject.get("rate"));
 	        String timePlaced = (String) jObject.get("timePlaced");
 	        String originatingCountry = (String) jObject.get("originatingCountry");
 	       
-	        TradeMessageDto tradeMessage = new TradeMessageDto(userId, currencyFrom, amountSell, amountBuy, rate, timePlaced, originatingCountry);
+	        TradeMessageDto tradeMessage = new TradeMessageDto(userId, currencyFrom, amountSell, amountBuy, rate, timePlaced, originatingCountry, currencyTo);
 	        tradeMessageService.insert(tradeMessage);
 	        
 	        // return HTTP resonse 200 in case of success

@@ -4,6 +4,7 @@ public class TradeMessageDto {
 	
 	private Long userId ;
 	private String currencyFrom ;
+	private String currencyTo;
 	private Double amountSell;
 	private Double amountBuy;
 	private Double rate;
@@ -16,9 +17,10 @@ public class TradeMessageDto {
 	}
 	public TradeMessageDto(Long userId, String currencyFrom, Double amountSell,
 			Double amountBuy, Double rate, String timePlaced,
-			String originatingCountry) {
+			String originatingCountry, String currencyTo) {
 		super();
 		this.userId = userId;
+		this.currencyTo = currencyTo;
 		this.currencyFrom = currencyFrom;
 		this.amountSell = amountSell;
 		this.amountBuy = amountBuy;
@@ -81,6 +83,12 @@ public class TradeMessageDto {
 
 	public void setOriginatingCountry(String originatingCountry) {
 		this.originatingCountry = originatingCountry;
+	}
+	public String getCurrencyTo() {
+		return currencyTo;
+	}
+	public void setCurrencyTo(String currencyTo) {
+		this.currencyTo = currencyTo;
 	}
 	
 

@@ -1,48 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"   
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      >
-    <h:body>
-    	
-    	<ui:composition template="template/common/commonLayout.xhtml">
-			
-			<ui:define name="content">
-    			<h2>currency Fair</h2>
-    			
-    			  #{tradeMessageBean.printMsgFromSpring()}
-  
-  		 <h:dataTable value="#{tradeMessageBean.getList()}" var="o"
-    			styleClass="order-table"
-    			headerClass="order-table-header"
-    			rowClasses="order-table-odd-row,order-table-even-row"
-    		>
- 
-    			<h:column>
-    				<!-- column header -->
-    				<f:facet name="header">currency From</f:facet>
-    				<!-- row record -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:body>
+<script type="text/javascript">
+var data;
+</script>
+	<ui:composition template="template/common/commonLayout.xhtml">
+		<ui:define name="content">
+			<div id="line-example"></div>
+			<h:dataTable value="#{tradeMessageBean.getList()}" var="o"
+				styleClass="table" headerClass="order-table-header"
+				rowClasses="order-table-odd-row,order-table-even-row">
+
+				<h:column>
+					<!-- column header -->
+					<f:facet name="header">User Id</f:facet>
+					<!-- row record -->
+    				#{o.userId}
+    			</h:column>
+				
+				<h:column>
+					<!-- column header -->
+					<f:facet name="header">currency From</f:facet>
+					<!-- row record -->
     				#{o.currencyFrom}
     			</h:column>
- 
-    
- 
-    		</h:dataTable>
- 
-    		</ui:define>
-    	
+    			<h:column>
+					<!-- column header -->
+					<f:facet name="header">currency To</f:facet>
+					<!-- row record -->
+    				#{o.currencyTo}
+    			</h:column>
+    					<h:column>
+					<!-- column header -->
+					<f:facet name="header">Originating Country</f:facet>
+					<!-- row record -->
+    				#{o.originatingCountry}
+    			</h:column>
+    			
+    					<h:column>
+					<!-- column header -->
+					<f:facet name="header">Time Placed</f:facet>
+					<!-- row record -->
+    				#{o.timePlaced}
+    			</h:column>
+    			
+    			<h:column>
+					<!-- column header -->
+					<f:facet name="header">Amount Buy</f:facet>
+					<!-- row record -->
+    				#{o.amountBuy}
+    			</h:column>
+    			
+    				<h:column>
+					<!-- column header -->
+					<f:facet name="header">Amount Sell</f:facet>
+					<!-- row record -->
+    				#{o.amountSell}
+    			</h:column>
+    			
+    			
 
 
-    	
-    		<ui:define name="footer">
-    	
-    		</ui:define>
-			
-    	</ui:composition>
-    	
-    </h:body>
+
+			</h:dataTable>
+
+			<h:selectOneMenu value="#{tradeMessageBean.selectedCurrency}" id="currencyId" >
+			   	<f:selectItem itemValue="EUR/GBP" itemLabel="EUR/GBP" />
+			   	<f:selectItem itemValue="USD/GBP" itemLabel="USD/GBP" />
+			</h:selectOneMenu>
+			<div class="col-md-6 col-sm-12 col-xs-12"></div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">Conversion Graph</div>
+				<div class="panel-body">
+					<div id="morris-area-chart"></div>
+				</div>
+
+			</div>
+		</ui:define>
+
+		<ui:define name="footer">
+			<h:outputScript library="webjars" name="chartjs/1.0.2/Chart.js" />
+			<h:outputScript library="webjars" name="jquery/1.11.1/jquery.js" />
+			<h:outputScript library="webjars" name="morrisjs/0.5.1/morris.js" />
+			<h:outputScript library="webjars"
+				name="raphaeljs/2.1.2/raphael-min.js" />
+
+			<h:outputScript library="js" name="jquery.metisMenu.js" />
+			<h:outputScript library="js" name="custom-scripts.js" />
+<script type="text/javascript">
+
+    var currencyFrom = {};
+    var currencyTo = {};
+    var userId = {};
+    var originatingCountry = {};
+    var rate = {};
+    var timePlaced = {};
+    var count =0;
+    var allDate={};
+	var amountBuy = {};
+	var amountSell ={};
+
+	<ui:repeat value="#{tradeMessageBean.getList()}" var="message">
+   		 currencyFrom[count] = '#{message.currencyFrom}';
+ 		 currencyTo[count] =  '#{message.currencyTo}';
+ 		 userId[count] = '#{message.userId}';
+		 originatingCountry[count] = '#{message.originatingCountry}';	 	 
+ 		 rate[count] = '#{message.rate}';
+ 		 timePlaced[count] = '#{message.timePlaced}';
+ 		 amountSell ='#{message.amountSell}';
+ 		 amountBuy ='#{message.amountBuy}';
+         count++;
+     </ui:repeat>
+
+
+data = getCurrency('EUR/GBP');
+
+</script>
+
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
 
 </html>

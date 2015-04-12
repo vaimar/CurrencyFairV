@@ -8,6 +8,8 @@ import com.as.currencyFair.model.entity.TradeMessage;
 
 public interface TradeMessageDao {
 
+	public static final String SELECT_QUERY = "select t from TradeMessage t";
+	
 	List<TradeMessage> selectAll();
 
 	void insert(TradeMessageDto tradeMessage);

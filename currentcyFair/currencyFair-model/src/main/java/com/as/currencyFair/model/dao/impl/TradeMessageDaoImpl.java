@@ -22,11 +22,8 @@ import com.as.currencyFair.model.entity.TradeMessage;
 @Repository("tradeMessageDao")
 public class TradeMessageDaoImpl implements TradeMessageDao {
 
-
 	private EntityManager entityManager;
 
-	
-	private static final String SELECT_QUERY = "select t from TradeMessage t";
 
 	public EntityManager getEntityManager() {
 		return entityManager;
@@ -42,6 +39,7 @@ public class TradeMessageDaoImpl implements TradeMessageDao {
 		tradeMessage.setAmountBuy(tradeMessageDto.getAmountBuy());
 		tradeMessage.setAmountSell(tradeMessageDto.getAmountSell());
 		tradeMessage.setCurrencyFrom(tradeMessageDto.getCurrencyFrom());
+		tradeMessage.setCurrencyTo(tradeMessageDto.getCurrencyTo());
 		tradeMessage.setUserId(tradeMessageDto.getUserId());
 		tradeMessage.setOriginatingCountry(tradeMessageDto.getOriginatingCountry());
 		tradeMessage.setRate(tradeMessageDto.getRate());
